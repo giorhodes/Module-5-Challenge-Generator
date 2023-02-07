@@ -89,67 +89,50 @@ var upperCasedCharacters = [
 ];
 
 // Function to prompt user for password options
-
 function getPasswordOptions() {
-    // Variable to store length of password from user output
-    let length = parseInt(
-        prompt("How many characters would you like your password to contain"))
+    // Variable to store length of password from user input
+    let length = parseInt(prompt("How many characters would you like your password to contain?"));
 
     if (isNaN(length) == true) {
-        alert("password length must be provided as number");
+        alert("Password length must be provided as a number.");
         return;
-
     }
 
     if (length < 10) {
-
-        alert("Password length must be at less 10 characters ")
+        alert("Password length must be at least 10 characters.");
         return;
     }
 
     if (length > 64) {
-
-        alert("Password length must be at less than 65 characters")
+        alert("Password length must be at most 64 characters.");
         return;
     }
+
+    let hasSpecialCharacters = confirm("Do you want to include special characters in your password?");
+    let hasNumericCharacters = confirm("Do you want to include numeric characters in your password?");
+    let hasLowercaseCharacters = confirm("Do you want to include lowercase characters in your password?");
+    let hasUppercaseCharacters = confirm("Do you want to include uppercase characters in your password?");
+
+    if (!hasSpecialCharacters && !hasNumericCharacters && !hasLowercaseCharacters && !hasUppercaseCharacters) {
+        alert("Must select at least one character type.");
+        return;
+    }
+
+    let passwordOptions = {
+        length: length,
+        hasSpecialCharacters: hasSpecialCharacters,
+        hasNumericCharacters: hasNumericCharacters,
+        hasLowercaseCharacters: hasLowercaseCharacters,
+        hasUppercaseCharacters: hasUppercaseCharacters
+    }
+
+    return passwordOptions;
 }
-let hasSpecialCharacters = confirm()
-
-let hasNumericCharacters = confirm()
-
-let hasLowercaseCharacters = confirm()
-
-let hasUpperCaseCharacter = confirm()
-
-if hasSpecialCharacters == false &&
-    hasNumericCharacters &&
-  == hasLowercaseCharacters && == hasUpperCaseCharacter { alert("Must select at least one character type") }
-
-let passwordOptions = {
-    length: length,
-    hasSpecialCharacters: hasUpperCased
-hasLowercaseCharacters: hasLowercaseCharacters,
-    hasNumericCharacters: hasNumericCharacters
-
-}
-
-console.log(passwordOptions);
-
-return passwordOptions;
-
-
-
-
-
-
-
-
-
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-    let randomindex = Math.floor(Math.random() * arr.length)
-    let randomElement = arr[randomindex];
+    let randomIndex = Math.floor(Math.random() * arr.length);
+    let randomElement = arr[randomIndex];
 
     return randomElement;
 }
